@@ -1,5 +1,6 @@
 package com.cda.jee.model;
 
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,10 +11,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Currency {
-	private int idCurrency;
+public class Holdings {
+	private int idHoldings;
 	private String nameCurrency;
-	private String label;
+	private int quantity;
+	private Float purchasePrice;
+	private Date purchaseDate;
 	private Float currentPrice;
+	private Float delta;
 	
 }

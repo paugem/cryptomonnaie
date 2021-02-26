@@ -1,5 +1,22 @@
 package com.cda.jee.dao;
 
-public interface IDAO {
+import java.util.ArrayList;
 
+public interface IDAO<T> {
+	
+	// List of the object
+	public ArrayList<T> getAll();
+	
+	// Create one object
+	public T add(T t);
+		
+	// Show one object
+	public T getById(int ID);
+	
+	// Edit one object
+	public T updateById(T t);
+	
+	// Delete one object
+	public void deleteById(int id);
+		
 }

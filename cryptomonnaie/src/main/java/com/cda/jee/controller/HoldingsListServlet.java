@@ -3,7 +3,7 @@ package com.cda.jee.controller;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
-@WebServlet("/Index.html")
+@WebServlet("/holdings_index.html")
 public class HoldingsListServlet extends HttpServlet {
 
 	
