@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.cda.jee.model.Currency;
 
-public class CurrencyServicesImp implements IServices<Currency>{
+public class CurrencyServicesImp implements IServices<Currency> {
 
 	@Override
 	public ArrayList<Currency> index() {
@@ -33,7 +33,7 @@ public class CurrencyServicesImp implements IServices<Currency>{
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

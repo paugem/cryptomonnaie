@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import com.cda.jee.model.Holdings;
 
-public class HoldingsServicesImp implements IServices<Holdings>{
-
+public class HoldingsServicesImp implements IServices<Holdings> {
+	
 	@Override
 	public ArrayList<Holdings> index() {
 		// TODO Auto-generated method stub
@@ -33,7 +33,7 @@ public class HoldingsServicesImp implements IServices<Holdings>{
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
