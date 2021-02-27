@@ -14,11 +14,10 @@ import com.cda.jee.services.CurrencyServicesImp;
 
 @WebServlet("/currency_index.html")
 public class CurrencyListServlet extends HttpServlet {
+	CurrencyServicesImp currencyServices = new CurrencyServicesImp();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		CurrencyServicesImp currencyServices = new CurrencyServicesImp();
 		
 		ArrayList<Currency> currencies = currencyServices.index();
 		
