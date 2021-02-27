@@ -2,38 +2,35 @@ package com.cda.jee.services;
 
 import java.util.ArrayList;
 
+import com.cda.jee.dao.CurrencyDAOImp;
 import com.cda.jee.model.Currency;
 
-public class CurrencyServicesImp implements IServices<Currency>{
+public class CurrencyServicesImp implements IServices<Currency> {
+	CurrencyDAOImp currencyDao = new CurrencyDAOImp();
 
 	@Override
 	public ArrayList<Currency> index() {
-		// TODO Auto-generated method stub
-		return null;
+		return currencyDao.getAll();
 	}
 
 	@Override
 	public Currency create(Currency t) {
-		// TODO Auto-generated method stub
-		return null;
+		return currencyDao.add(t);
 	}
 
 	@Override
-	public Currency read(int ID) {
-		// TODO Auto-generated method stub
-		return null;
+	public Currency read(int id) {
+		return currencyDao.getById(id);
 	}
 
 	@Override
 	public Currency update(Currency t) {
-		// TODO Auto-generated method stub
-		return null;
+		return currencyDao.updateById(t);
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		currencyDao.deleteById(id);
 	}
 
 }

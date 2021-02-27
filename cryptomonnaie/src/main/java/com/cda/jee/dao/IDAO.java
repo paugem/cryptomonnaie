@@ -11,7 +11,7 @@ public interface IDAO<T> {
 	public T add(T t);
 		
 	// Show one object
-	public T getById(int ID);
+	public T getById(int id);
 	
 	// Edit one object
 	public T updateById(T t);
