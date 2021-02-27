@@ -48,11 +48,11 @@ public class CurrencyDAOImp implements IDAO<Currency>{
 	}
 
 	@Override
-	public Currency getById(int ID) {
+	public Currency getById(int id) {
 		Currency res = null;
 		Connection c = MyConnection.getConnection();
-		try (PreparedStatement ps = c.prepareStatement("select * from currency where id = ? ")) {
-			ps.setInt(1, ID);
+		try (PreparedStatement ps = c.prepareStatement("select * from currency where id_currency = ? ")) {
+			ps.setInt(1, id);
 			ResultSet r = ps.executeQuery();
 			if (r.next()) {
 				res = new Currency(r.getInt("id_currency"),r.getString("name_currency"),r.getString("label_currency"),r.getFloat("current_price"));
@@ -67,7 +67,7 @@ public class CurrencyDAOImp implements IDAO<Currency>{
 	@Override
 	public Currency updateById(Currency t) {
 		Connection c = MyConnection.getConnection();
-		try (PreparedStatement ps = c.prepareStatement("update currency set current_price=? where id=?")) {
+		try (PreparedStatement ps = c.prepareStatement("update currency set current_price=? where id_currency=?")) {
 			ps.setFloat(1, t.getCurrentPrice());
 			ps.setInt(2, t.getIdCurrency());
 			ps.executeUpdate();
@@ -81,7 +81,7 @@ public class CurrencyDAOImp implements IDAO<Currency>{
 	@Override
 	public void deleteById(int id) {
 		Connection c = MyConnection.getConnection();
-		try (PreparedStatement ps = c.prepareStatement("delete from currency where id=?")) {
+		try (PreparedStatement ps = c.prepareStatement("delete from currency where id_currency=?")) {
 			ps.setInt(1, id);
 		} 
 		catch (SQLException e) {

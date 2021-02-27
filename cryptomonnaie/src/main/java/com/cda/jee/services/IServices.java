@@ -11,7 +11,7 @@ public interface IServices<T> {
 	public T create(T t);
 	
 	// Show one object
-	public T read(int ID);
+	public T read(int id);
 	
 	// Edit one object
 	public T update(T t);
