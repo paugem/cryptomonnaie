@@ -22,4 +22,6 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
+<nav class="navbar navbar-dark bg-primary">
+</nav>
 <body>

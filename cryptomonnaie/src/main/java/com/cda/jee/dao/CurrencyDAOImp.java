@@ -26,7 +26,7 @@ public class CurrencyDAOImp implements IDAO<Currency>{
 				res.add(new Currency(r.getInt("id_currency"),r.getString("name_currency"),r.getString("label_currency"),r.getFloat("current_price")));
 			}
 		} catch (SQLException e) {
-			//log + erreur à faire
+			logger.error("erreur : " + e);
 		}
 		return res;
 	}
@@ -48,14 +48,12 @@ public class CurrencyDAOImp implements IDAO<Currency>{
 				}
 				return t;
 			} catch (SQLException e) {
-				logger.error("erreur " + e);
-				System.out.println("Impossible de supprimer la cryptomonnaie, des avoirs y sont associés");
+				logger.error("erreur : " + e);
 				return null;
 			}
 		}
 		else {
 			logger.error("Impossible d'ajouter la cryptomonnaie, elle existe déjà en BDD");
-			System.out.println("Impossible d'ajouter la cryptomonnaie, elle existe déjà en BDD");
 			return null;
 		}
 		
@@ -72,8 +70,7 @@ public class CurrencyDAOImp implements IDAO<Currency>{
 				res = new Currency(r.getInt("id_currency"),r.getString("name_currency"),r.getString("label_currency"),r.getFloat("current_price"));
 			}
 		} catch (SQLException e) {
-			//log + erreur à faire + return res à virer
-			return res;
+			logger.error("erreur : " + e);
 		}
 		return res;
 	}
@@ -81,32 +78,41 @@ public class CurrencyDAOImp implements IDAO<Currency>{
 	@Override
 	public Currency updateById(Currency t) {
 		Connection c = MyConnection.getConnection();
-		try (PreparedStatement ps = c.prepareStatement("update currency set current_price=? where id_currency=?")) {
-			ps.setFloat(1, t.getCurrentPrice());
-			ps.setInt(2, t.getIdCurrency());
-			ps.executeUpdate();
-			return t;
-		} catch (SQLException e) {
-			//log + erreur à faire + return t à virer
-			return t;
+		Currency cur = getByName(t.getNameCurrency());
+		if(cur!=null) {
+			try (PreparedStatement ps = c.prepareStatement("update currency set current_price=? where id_currency=?")) {
+				ps.setFloat(1, t.getCurrentPrice());
+				ps.setInt(2, t.getIdCurrency());
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				logger.error("erreur : " + e);
+			}
 		}
+		else {
+			logger.error("erreur : la cryptomonnaie n'existe pas en BDD");			
+		}
+		return t;
 	}
 
 	@Override
 	public void deleteById(int id) {
 		Connection c = MyConnection.getConnection();
-		try (PreparedStatement ps = c.prepareStatement("delete from currency where id_currency=?")) {
-			ps.setInt(1, id);
-			ps.executeUpdate();
-		} 
-		catch (SQLIntegrityConstraintViolationException sqle) {
-			logger.error("erreur " + sqle);
-			System.out.println("Impossible de supprimer la cryptomonnaie, des avoirs y sont associés");
+		Currency cur = getById(id);
+		if(cur!=null) {
+			try (PreparedStatement ps = c.prepareStatement("delete from currency where id_currency=?")) {
+				ps.setInt(1, id);
+				ps.executeUpdate();
+			} 
+			catch (SQLIntegrityConstraintViolationException sqle) {
+				logger.error("erreur : " + sqle);
+			}
+			catch(SQLException e) {
+				logger.error("erreur : " + e);
+			}
 		}
-		catch(SQLException e) {
-			//log + erreur à faire
+		else {
+			logger.error("erreur : la cryptomonnaie n'existe pas en BDD");			
 		}
-		
 	}
 
 	@Override
@@ -120,8 +126,7 @@ public class CurrencyDAOImp implements IDAO<Currency>{
 				res = new Currency(r.getInt("id_currency"),r.getString("name_currency"),r.getString("label_currency"),r.getFloat("current_price"));
 			}
 		} catch (SQLException e) {
-			//log + erreur à faire + return res à virer
-			return res;
+			logger.error("erreur : " + e);
 		}
 		return res;
 	}
