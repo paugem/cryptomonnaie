@@ -32,3 +32,4 @@
 	</div>
 </div>
 
+<script type="text/javascript" src="./js/currency_show.js"></script>
