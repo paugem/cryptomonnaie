@@ -3,11 +3,11 @@ package com.cda.jee.services;
 import java.util.ArrayList;
 
 import com.cda.jee.dao.HoldingsDAOImp;
-import com.cda.jee.model.Currency;
 import com.cda.jee.model.Holdings;
 
 public class HoldingsServicesImp implements IServices<Holdings> {
 	HoldingsDAOImp holdingsDao = new HoldingsDAOImp();
+	
 	@Override
 	public ArrayList<Holdings> index() {
 		return holdingsDao.getAll();

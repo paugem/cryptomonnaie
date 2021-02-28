@@ -2,6 +2,8 @@ package cryptomonnaie;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -32,7 +34,10 @@ class TestHoldingsServicesImp {
 
 	@Test
 	void testIndex() {
-		fail("Not yet implemented");
+		ArrayList<Holdings> liste1 = holdServiceImp.index();
+		holdServiceImp.create(new Holdings());
+		ArrayList<Holdings> liste2 = holdServiceImp.index();
+		assertTrue(liste1.size()<liste2.size());
 	}
 
 	@Test
