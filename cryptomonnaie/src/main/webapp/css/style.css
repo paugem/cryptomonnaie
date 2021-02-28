@@ -1,3 +1,30 @@
 h1 {
 	color: red;
 }
+
+
+
+.popup-box {
+    flex: 1;
+    max-width: 48rem;
+    margin: auto;
+    padding: 1.5rem;
+    background-color: burlywood;
+    border: 1px solid black;
+}
+
+.popup[aria-hidden="true"] {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.popup {
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    top: 0;	
+    min-height: 250px;
+
+    background-color: rgba(black, .75);
+    transition: .5s;
+}
