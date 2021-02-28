@@ -23,6 +23,7 @@ public class MyConnection implements AutoCloseable {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	public static Connection getConnection() {
 		if (connection == null) {
 			new MyConnection();

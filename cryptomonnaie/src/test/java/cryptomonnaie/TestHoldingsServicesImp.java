@@ -8,11 +8,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.cda.jee.dao.CurrencyDAOImp;
-import com.cda.jee.model.Currency;
+import com.cda.jee.model.Holdings;
+import com.cda.jee.services.HoldingsServicesImp;
 
-class TestCurrencyDAOImp {
-	CurrencyDAOImp curDaoImp = new CurrencyDAOImp();
+class TestHoldingsServicesImp {
+	HoldingsServicesImp holdServiceImp = new HoldingsServicesImp();
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,31 +31,27 @@ class TestCurrencyDAOImp {
 	}
 
 	@Test
-	void testGetAll() {
+	void testIndex() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testAdd() {
-		float var = 30;
-		Currency cur1 = new Currency(11,"Test","TST",var);
-		Currency cur2 = new Currency("Test","TST",var);
-		Currency cur3 = curDaoImp.add(cur2);
-		assertEquals(cur1,cur3);
-	}
-
-	@Test
-	void testGetById() {
+	void testCreate() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testUpdateById() {
+	void testRead() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testDeleteById() {
+	void testUpdate() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testDelete() {
 		fail("Not yet implemented");
 	}
 
