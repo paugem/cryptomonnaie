@@ -34,8 +34,9 @@ class TestCurrencyServicesImp {
 
 	@Test
 	void testIndex() {
+		float var = 30;
 		ArrayList<Currency> liste1 = curServicesImp.index();
-		curServicesImp.create(new Currency());
+		curServicesImp.create(new Currency("Test","TS2",var));
 		ArrayList<Currency> liste2 = curServicesImp.index();
 		assertTrue(liste1.size()<liste2.size());
 	}

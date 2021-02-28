@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Holdings {
+public class Holding {
 	private int idHoldings;
 	private String nameCurrency;
 	private int quantity;
@@ -20,4 +20,12 @@ public class Holdings {
 	private Float currentPrice;
 	private Float delta;
 	
+	public Holding (String pNameCurrency, int pQuantity, Float pPurchasePrice, Date pPurchaseDate, Float pCurrentPrice, Float pDelta) {
+		this.nameCurrency = pNameCurrency;
+		this.quantity=pQuantity;
+		this.purchasePrice=pPurchasePrice;
+		this.purchaseDate=pPurchaseDate;
+		this.currentPrice=pCurrentPrice;
+		this.delta=pDelta;
+	}
 }
