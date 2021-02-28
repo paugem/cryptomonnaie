@@ -83,6 +83,7 @@ public class CurrencyDAOImp implements IDAO<Currency>{
 		Connection c = MyConnection.getConnection();
 		try (PreparedStatement ps = c.prepareStatement("delete from currency where id_currency=?")) {
 			ps.setInt(1, id);
+			ps.executeUpdate();
 		} 
 		catch (SQLException e) {
 			//log + erreur à faire

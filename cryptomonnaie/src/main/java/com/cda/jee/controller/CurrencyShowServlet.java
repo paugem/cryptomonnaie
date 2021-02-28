@@ -14,6 +14,9 @@ import com.cda.jee.services.CurrencyServicesImp;
 
 @WebServlet("/currency_show.html")
 public class CurrencyShowServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
 	CurrencyServicesImp currencyServices = new CurrencyServicesImp();
 
 	@Override

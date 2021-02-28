@@ -13,6 +13,9 @@ import com.cda.jee.services.CurrencyServicesImp;
 
 @WebServlet("/currency_new.html")
 public class CurrencyNewServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+
 	CurrencyServicesImp currencyServices = new CurrencyServicesImp();
 
 	@Override
@@ -24,14 +27,14 @@ public class CurrencyNewServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		int id = (int)req.getAttribute("id");
-		String name = (String)req.getAttribute("name");
-		String label = (String)req.getAttribute("label");
-		Float currentPrice = (float)req.getAttribute("currentPrice");
+		int id = Integer.parseInt((String)req.getParameter("id"));
+		String name = String.valueOf((String)req.getParameter("name"));
+		String label = String.valueOf((String)req.getParameter("label"));
+		Float currentPrice = Float.parseFloat((String)req.getParameter("currentPrice"));
 		
 		Currency currency = new Currency(id, name, label, currentPrice);
 		currencyServices.create(currency);
 		
-		req.getRequestDispatcher("/WEB-INF/currency_index.jsp").forward(req, resp);
+		resp.sendRedirect("./currency_index.html");
 	}
 }

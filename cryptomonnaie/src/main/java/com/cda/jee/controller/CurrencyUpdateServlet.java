@@ -13,8 +13,11 @@ import com.cda.jee.services.CurrencyServicesImp;
 
 @WebServlet("/currency_update.html")
 public class CurrencyUpdateServlet extends HttpServlet {
-	CurrencyServicesImp currencyServices = new CurrencyServicesImp();
 
+	private static final long serialVersionUID = 1L;
+
+	CurrencyServicesImp currencyServices = new CurrencyServicesImp();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -29,14 +32,14 @@ public class CurrencyUpdateServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		int id = (int)req.getAttribute("id");
-		String name = (String)req.getAttribute("name");
-		String label = (String)req.getAttribute("label");
-		Float currentPrice = (float)req.getAttribute("currentPrice");
+		int id = Integer.parseInt((String)req.getParameter("id"));
+		String name = "";
+		String label = "";
+		Float currentPrice = Float.parseFloat((String)req.getParameter("currentPrice"));
 		
 		Currency currency = new Currency(id, name, label, currentPrice);
 		currencyServices.update(currency);
 		
-		req.getRequestDispatcher("/WEB-INF/currency_index.jsp").forward(req, resp);
+		resp.sendRedirect("./currency_index.html");
 	}
 }

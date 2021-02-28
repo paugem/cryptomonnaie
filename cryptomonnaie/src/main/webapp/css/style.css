@@ -3,7 +3,7 @@ h1 {
 }
 
 
-<!--modal-->
+
 .popup-box {
     flex: 1;
     max-width: 48rem;
@@ -16,4 +16,15 @@ h1 {
 .popup[aria-hidden="true"] {
     visibility: hidden;
     opacity: 0;
+}
+
+.popup {
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    top: 0;	
+    min-height: 250px;
+
+    background-color: rgba(black, .75);
+    transition: .5s;
 }
