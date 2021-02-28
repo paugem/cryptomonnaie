@@ -37,6 +37,6 @@ currencyDeleteNo.addEventListener("click", currencyDeleteApprovalClose);
 
 function redirectCurrencyDelete() {
 	const id = parseInt(this.id);
-	window.location.replace("./currency_delete.html?id=" + id);
 	currencyDeleteApprovalClose;
+	window.location.replace("./currency_delete.html?id=" + id);
 }

@@ -21,13 +21,13 @@ public class HoldingDAOImp implements IDAO<Holding>{
 		ArrayList<Holding> res = new ArrayList<>();
 		Connection c = MyConnection.getConnection();
 		try (Statement st = c.createStatement()) {
-			ResultSet r = st.executeQuery("select * from holding natural join currency;");
+			ResultSet r = st.executeQuery("select * from holding natural join currency");
 			while (r.next()) {
 				res.add(new Holding(r.getInt("id_holding"),r.getString("name_currency"),r.getInt("quantity"),
 						r.getFloat("unit_purchase_price"),r.getDate("purchase_date"),r.getFloat("current_price"),r.getFloat("unit_purchase_price")-r.getFloat("current_price")));
 			}
 		} catch (SQLException e) {
-			logger.error("erreur1 : " + e);
+			logger.error("erreur : " + e);
 		}
 		return res;
 	}
@@ -37,7 +37,7 @@ public class HoldingDAOImp implements IDAO<Holding>{
 		Connection c = MyConnection.getConnection();
 		Holding holding = getByName(t.getNameCurrency());
 		if(holding==null) {
-			try(PreparedStatement statement = c.prepareStatement("select id_currency from currency where name_currency = ?;")){
+			try(PreparedStatement statement = c.prepareStatement("select id_currency from currency where currency_name = ?;")){
 				statement.setString(1, t.getNameCurrency());
 				ResultSet r = statement.executeQuery();
 				try (PreparedStatement ps = c.prepareStatement("insert into holding (purchase_date,unit_purchase_price,quantity,id_currency) values (?,?,?,?); ",
@@ -45,22 +45,20 @@ public class HoldingDAOImp implements IDAO<Holding>{
 					ps.setDate(1, t.getPurchaseDate());
 					ps.setFloat(2, t.getPurchasePrice());
 					ps.setInt(3, t.getQuantity());
-					if(r.next()) {
-						ps.setInt(4, r.getInt("id_currency"));
-					}
+					ps.setInt(4, r.getInt("id_currency"));
 					ps.executeUpdate();
 					ResultSet resultat = ps.getGeneratedKeys();
 					if (resultat.next()) {
-						t.setIdHoldings(resultat.getInt(1));
+						t.setIdHolding(resultat.getInt(1));
 					}
 					return t;
 				} catch (SQLException e) {
-					logger.error("erreur2 : " + e);
+					logger.error("erreur : " + e);
 					return null;
 				}
 			}
 			catch (SQLException e) {
-				logger.error("erreur3 : " + e);	
+				logger.error("erreur : " + e);	
 				return null;	
 			}
 		}
@@ -83,7 +81,7 @@ public class HoldingDAOImp implements IDAO<Holding>{
 						r.getFloat("unit_purchase_price"),r.getDate("purchase_date"),r.getFloat("current_price"),r.getFloat("current_price")-r.getFloat("unit_purchase_price"));
 			}
 		} catch (SQLException e) {
-			logger.error("erreur4 : " + e);
+			logger.error("erreur : " + e);
 		}
 		return res;
 	}
@@ -93,29 +91,27 @@ public class HoldingDAOImp implements IDAO<Holding>{
 		Connection c = MyConnection.getConnection();
 		Holding holding = getByName(t.getNameCurrency());
 		if(holding!=null) {
-			try(PreparedStatement statement = c.prepareStatement("select id_currency from currency where name_currency = ?;")){
+			try(PreparedStatement statement = c.prepareStatement("select id_currency from currency where currency_name = ?;")){
 				statement.setString(1, t.getNameCurrency());
 				ResultSet r = statement.executeQuery();
 				try (PreparedStatement ps = c.prepareStatement("update holding set purchase_date=?, unit_purchase_price=?,quantity=?,id_currency=? where id_holding=?")) {
 					ps.setDate(1, t.getPurchaseDate());
 					ps.setFloat(2, t.getPurchasePrice());
 					ps.setInt(3, t.getQuantity());
-					if(r.next()) {
-						ps.setInt(4, r.getInt("id_currency"));
-					}
-					ps.setInt(5, t.getIdHoldings());
+					ps.setInt(4, r.getInt("id_currency"));
+					ps.setInt(5, t.getIdHolding());
 					ps.executeUpdate();
 					return t;
 				} catch (SQLException e) {
-					logger.error("erreur5 : " + e);
+					logger.error("erreur : " + e);
 				}
 			}
 			catch (SQLException e) {
-				logger.error("erreur6 : " + e);	
+				logger.error("erreur : " + e);	
 			}
 		}
 		else {
-			logger.error("erreur7 : l'avoir n'existe pas en BDD");
+			logger.error("erreur : l'avoir n'existe pas en BDD");
 		}
 		return t;
 	}
@@ -130,11 +126,11 @@ public class HoldingDAOImp implements IDAO<Holding>{
 				ps.executeUpdate();
 			} 
 			catch (SQLException e) {
-				logger.error("erreur8 : " + e);
+				logger.error("erreur : " + e);
 			}
 		}
 		else {
-			logger.error("erreur9 : l'avoir n'existe pas en BDD");			
+			logger.error("erreur : l'avoir n'existe pas en BDD");			
 		}
 	}
 
@@ -150,7 +146,7 @@ public class HoldingDAOImp implements IDAO<Holding>{
 						r.getFloat("unit_purchase_price"),r.getDate("purchase_date"),r.getFloat("current_price"),r.getFloat("current_price")-r.getFloat("unit_purchase_price"));
 			}
 		} catch (SQLException e) {
-			logger.error("erreur0 : " + e);
+			logger.error("erreur : " + e);
 		}
 		return res;
 	}

@@ -1,7 +1,6 @@
 package com.cda.jee.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,11 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cda.jee.model.Holding;
 import com.cda.jee.services.HoldingsServicesImp;
 
-@WebServlet("/holdings_index.html")
-public class HoldingsListServlet extends HttpServlet {
+@WebServlet("/holdings_delete.html")
+public class HoldingsDeleteServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,10 +20,11 @@ public class HoldingsListServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		ArrayList<Holding> holdings = holdingsServices.index();
+		String idStr = req.getParameter("id");
+		int id = Integer.valueOf(idStr);
 
-		req.setAttribute("holdings", holdings);
+		holdingsServices.delete(id);
 
-		req.getRequestDispatcher("/WEB-INF/holdings_list.jsp").forward(req, resp);
+		resp.sendRedirect("./holdings_index.html");
 	}
 }

@@ -3,7 +3,7 @@
 
 	<c:choose>
 		<c:when test="${empty currency}">
-			<h5>Aucune cryptomonnaie n'a cet ID.</h5>
+			<h3>Aucune cryptomonnaie n'a cet ID.</h3>
 		</c:when>
 		<c:otherwise>
 			<ul>
