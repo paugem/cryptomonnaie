@@ -17,29 +17,58 @@ public class CurrencyUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	CurrencyServicesImp currencyServices = new CurrencyServicesImp();
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		String idStr = req.getParameter("id");
+		
 		int id = Integer.valueOf(idStr);
 		Currency currency = currencyServices.read(id);
 
 		req.setAttribute("currency", currency);
 		req.getRequestDispatcher("/WEB-INF/currency_update.jsp").forward(req, resp);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		int id = Integer.parseInt((String)req.getParameter("id"));
+		int id = Integer.parseInt(req.getParameter("id"));
 		String name = "";
 		String label = "";
-		Float currentPrice = Float.parseFloat((String)req.getParameter("currentPrice"));
+		String currentPriceStr = req.getParameter("currentPrice");
+
+		// Check if the price has been completed
+		if (currentPriceStr == null || currentPriceStr.isEmpty()) {
+			req.setAttribute("error_message", "Le prix est obligatoire.");
+			doGet(req,resp);
+//			req.getRequestDispatcher("/WEB-INF/currency_update.jsp").forward(req, resp);
+			return;
+		}
 		
+		
+		// Check if the price is a number
+		Float currentPrice;
+		try {
+			currentPrice = Float.parseFloat(currentPriceStr);
+		} catch (NumberFormatException e) {
+			req.setAttribute("error_message", "Le prix est forcément un nombre.");
+			doGet(req,resp);
+//			req.getRequestDispatcher("/WEB-INF/currency_update.jsp").forward(req, resp);
+			return;
+		}
+		
+		// Check if the price is negative
+		if (currentPrice < 0) {
+			req.setAttribute("error_message", "Le prix ne peut pas être négatif.");
+			doGet(req,resp);
+//			req.getRequestDispatcher("/WEB-INF/currency_update.jsp").forward(req, resp);
+			return;
+		}
+
 		Currency currency = new Currency(id, name, label, currentPrice);
 		currencyServices.update(currency);
-		
+
 		resp.sendRedirect("./currency_index.html");
 	}
 }
