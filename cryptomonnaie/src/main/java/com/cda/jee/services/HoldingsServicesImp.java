@@ -2,29 +2,29 @@ package com.cda.jee.services;
 
 import java.util.ArrayList;
 
-import com.cda.jee.dao.HoldingsDAOImp;
-import com.cda.jee.model.Holdings;
+import com.cda.jee.dao.HoldingDAOImp;
+import com.cda.jee.model.Holding;
 
-public class HoldingsServicesImp implements IServices<Holdings> {
-	HoldingsDAOImp holdingsDao = new HoldingsDAOImp();
+public class HoldingsServicesImp implements IServices<Holding> {
+	HoldingDAOImp holdingsDao = new HoldingDAOImp();
 	
 	@Override
-	public ArrayList<Holdings> index() {
+	public ArrayList<Holding> index() {
 		return holdingsDao.getAll();
 	}
 
 	@Override
-	public Holdings create(Holdings t) {
+	public Holding create(Holding t) {
 		return holdingsDao.add(t);
 	}
 
 	@Override
-	public Holdings read(int id) {
+	public Holding read(int id) {
 		return holdingsDao.getById(id);
 	}
 
 	@Override
-	public Holdings update(Holdings t) {
+	public Holding update(Holding t) {
 		return holdingsDao.updateById(t);
 	}
 
