@@ -1,17 +1,3 @@
-// redirect from the currencyList to a currency by clicking on its line:
-const currencyShow = document.querySelectorAll('.currency_unit');
-
-currencyShow.forEach(p => {
-	p.addEventListener("click", redirectCurrencyShow);
-});
-
-function redirectCurrencyShow() {
-	const idCurrency = parseInt(this.parentNode.id);
-	window.location.replace("./currency_show.html?id=" + idCurrency);
-}
-
-
-
 // redirect from the currencyShow to its currencyUpdate by clicking on modify:
 const currencyModify = document.querySelector('.currency_modify');
 

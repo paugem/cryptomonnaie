@@ -18,7 +18,7 @@
 					<c:forEach items="${currencies}" var="currency">
 						<tr id="${currency.getIdCurrency()}">
 							<td class="currency_unit"><c:out value="${currency.getIdCurrency() }"></c:out></td>
-							<td class="currency_unit"><c:out value="${currency.getNameCurrency() }"></c:out></td>
+							<td class="currency_un	it"><c:out value="${currency.getNameCurrency() }"></c:out></td>
 							<td class="currency_unit"><c:out value="${currency.getLabel() }"></c:out></td>
 							<td class="currency_unit"><c:out value="${currency.getCurrentPrice() }"></c:out></td>
 						</tr>
@@ -27,4 +27,8 @@
 			</table>
 		</c:otherwise>
 	</c:choose>
+<button class="btn btn-success currency_new">Ajouter une nouvelle cryptomonnaie</button>
 </div>
+
+
+<script type="text/javascript" src="./js/currency_index.js"></script>
