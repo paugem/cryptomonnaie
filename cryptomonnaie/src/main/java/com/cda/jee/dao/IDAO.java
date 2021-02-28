@@ -13,6 +13,9 @@ public interface IDAO<T> {
 	// Show one object
 	public T getById(int id);
 	
+	//Show one object
+	public T getByName(String name);
+	
 	// Edit one object
 	public T updateById(T t);
 	

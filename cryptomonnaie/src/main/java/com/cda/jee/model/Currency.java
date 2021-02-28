@@ -16,4 +16,10 @@ public class Currency {
 	private String label;
 	private Float currentPrice;
 	
+	public Currency(String pNameCurrency, String pLabel, Float pCurrentPrice) {
+		this.nameCurrency=pNameCurrency;
+		this.label=pLabel;
+		this.currentPrice=pCurrentPrice;
+	}
 }
+

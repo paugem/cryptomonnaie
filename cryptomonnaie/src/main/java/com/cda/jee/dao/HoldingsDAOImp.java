@@ -7,10 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.cda.jee.connection.MyConnection;
 import com.cda.jee.model.Holdings;
 
 public class HoldingsDAOImp implements IDAO<Holdings>{
+	private static final Logger logger = LoggerFactory.getLogger(HoldingsDAOImp.class);
 
 	@Override
 	public ArrayList<Holdings> getAll() {
@@ -31,29 +35,37 @@ public class HoldingsDAOImp implements IDAO<Holdings>{
 	@Override
 	public Holdings add(Holdings t) {
 		Connection c = MyConnection.getConnection();
-		try(PreparedStatement statement = c.prepareStatement("select id_currency from currency where currency_name = ?;")){
-			statement.setString(1, t.getNameCurrency());
-			ResultSet r = statement.executeQuery();
-			try (PreparedStatement ps = c.prepareStatement("insert into holding (purchase_date,unit_purchase_price,quantity,id_currency) values (?,?,?,?); ",
-					PreparedStatement.RETURN_GENERATED_KEYS)) {
-				ps.setDate(1, t.getPurchaseDate());
-				ps.setFloat(2, t.getPurchasePrice());
-				ps.setInt(3, t.getQuantity());
-				ps.setInt(4, r.getInt("id_currency"));
-				ps.executeUpdate();
-				ResultSet resultat = ps.getGeneratedKeys();
-				if (resultat.next()) {
-					t.setIdHoldings(resultat.getInt(1));
+		Holdings holding = getByName(t.getNameCurrency());
+		if(holding==null) {
+			try(PreparedStatement statement = c.prepareStatement("select id_currency from currency where currency_name = ?;")){
+				statement.setString(1, t.getNameCurrency());
+				ResultSet r = statement.executeQuery();
+				try (PreparedStatement ps = c.prepareStatement("insert into holding (purchase_date,unit_purchase_price,quantity,id_currency) values (?,?,?,?); ",
+						PreparedStatement.RETURN_GENERATED_KEYS)) {
+					ps.setDate(1, t.getPurchaseDate());
+					ps.setFloat(2, t.getPurchasePrice());
+					ps.setInt(3, t.getQuantity());
+					ps.setInt(4, r.getInt("id_currency"));
+					ps.executeUpdate();
+					ResultSet resultat = ps.getGeneratedKeys();
+					if (resultat.next()) {
+						t.setIdHoldings(resultat.getInt(1));
+					}
+					return t;
+				} catch (SQLException e) {
+					//log + erreur à faire + return t à virer
+					return t;
 				}
-				return t;
-			} catch (SQLException e) {
+			}
+			catch (SQLException e) {
 				//log + erreur à faire + return t à virer
-				return t;
+				return t;			
 			}
 		}
-		catch (SQLException e) {
-			//log + erreur à faire + return t à virer
-			return t;			
+		else {
+			logger.error("Impossible d'ajouter l'avoir, il existe déjà en BDD");
+			System.out.println("Impossible d'ajouter l'avoir, il existe déjà en BDD");
+			return null;
 		}
 	}
 
@@ -104,10 +116,29 @@ public class HoldingsDAOImp implements IDAO<Holdings>{
 		Connection c = MyConnection.getConnection();
 		try (PreparedStatement ps = c.prepareStatement("delete from holding where id_holding=?")) {
 			ps.setInt(1, id);
+			ps.executeUpdate();
 		} 
 		catch (SQLException e) {
 			//log + erreur à faire
 		}
+	}
+
+	@Override
+	public Holdings getByName(String name) {
+		Holdings res = null;
+		Connection c = MyConnection.getConnection();
+		try (PreparedStatement ps = c.prepareStatement("select * from holding natural join currency where name_currency = ? ")) {
+			ps.setString(1, name);
+			ResultSet r = ps.executeQuery();
+			if (r.next()) {
+				res = new Holdings(r.getInt("id_holding"),r.getString("name_currency"),r.getInt("quantity"),
+						r.getFloat("unit_purchase_price"),r.getDate("purchase_date"),r.getFloat("current_price"),r.getFloat("current_price")-r.getFloat("unit_purchase_price"));
+			}
+		} catch (SQLException e) {
+			//log + erreur à faire + return res à virer
+			return res;
+		}
+		return res;
 	}
 
 }
