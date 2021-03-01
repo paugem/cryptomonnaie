@@ -1,6 +1,9 @@
 package com.cda.jee.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import com.cda.jee.services.HoldingsServicesImp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +23,7 @@ public class Holding {
 	private Date purchaseDate;
 	private Float currentPrice;
 	private Float delta;
+
 	
 	public Holding (String pNameCurrency, int pQuantity, Float pPurchasePrice, Date pPurchaseDate, Float pCurrentPrice, Float pDelta) {
 		this.nameCurrency = pNameCurrency;
@@ -47,4 +51,16 @@ public class Holding {
 		
 	}
 
+	public static float getTotalDelta() {
+		float total = 0;
+		HoldingsServicesImp holdingsServices = new HoldingsServicesImp();
+		
+		ArrayList<Holding> holdings = holdingsServices.index();
+		
+		for (Holding holding : holdings) {
+			total += holding.delta;
+		}
+		
+		return total;
+	}
 }

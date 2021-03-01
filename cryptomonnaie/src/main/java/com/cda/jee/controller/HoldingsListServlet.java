@@ -25,6 +25,8 @@ public class HoldingsListServlet extends HttpServlet {
 		ArrayList<Holding> holdings = holdingsServices.index();
 
 		req.setAttribute("holdings", holdings);
+		req.setAttribute("totalDelta", Holding.getTotalDelta());
+		
 
 		req.getRequestDispatcher("/WEB-INF/holdings_list.jsp").forward(req, resp);
 	}
