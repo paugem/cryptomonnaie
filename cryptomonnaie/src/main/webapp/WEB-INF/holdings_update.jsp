@@ -11,7 +11,7 @@
 				<label>Quantité : </label> <input value="${holding.getQuantity() }" type="number" name="quantity"> <br>
 				<label>Prix d'Achat : </label> <input value="${holding.getPurchasePrice() }" type="number" name="purchasePrice"> <br>
 				<label>Date d'Achat : </label> <input value="${holding.getPurchaseDate() }" type="date" name="purchaseDate"> <br>
-				<input type="submit" value="Valider">
+				<input class="btn btn-success" type="submit" value="Valider">
 			</form>
 		</c:otherwise>
 	</c:choose>

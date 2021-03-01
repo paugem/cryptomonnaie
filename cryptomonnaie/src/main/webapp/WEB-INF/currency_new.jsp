@@ -5,7 +5,7 @@
 		<label>Nom : </label> <input type="text" name="name"> <br>
 		<label>Label : </label> <input type="text" name="label"> <br>
 		<label>Prix Actuel : </label> <input type="number" name="currentPrice"> <br> 
-		<input type="submit" value="Valider">
+		<input class="btn btn-success" type="submit" value="Valider">
 	</form>
 
 	<c:choose>

@@ -5,7 +5,7 @@
 			<h3>Aucun avoir.</h3>
 		</c:when>
 		<c:otherwise>
-			<table class="table table-striped">
+			<table class="table table-striped table-bordered">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">ID</th>

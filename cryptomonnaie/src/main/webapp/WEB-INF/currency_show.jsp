@@ -6,16 +6,18 @@
 			<h3>Aucune cryptomonnaie n'a cet ID.</h3>
 		</c:when>
 		<c:otherwise>
-			<ul>
-				<li><c:out value="${currency.getIdCurrency() }"></c:out></li>
-				<li><c:out value="${currency.getNameCurrency() }"></c:out></li>
-				<li><c:out value="${currency.getLabel() }"></c:out></li>
-				<li><c:out value="${currency.getCurrentPrice() }"></c:out></li>
+			<ul class="border border-secondary rounded">
+				<li>ID : <c:out value="${currency.getIdCurrency() }"></c:out></li>
+				<li>Nom : <c:out value="${currency.getNameCurrency() }"></c:out></li>
+				<li>Label : <c:out value="${currency.getLabel() }"></c:out></li>
+				<li>Prix Actuel : <c:out value="${currency.getCurrentPrice() }"></c:out></li>
 			</ul>
+			<div>
 			<button id="${currency.getIdCurrency() }"
 				class="btn btn-primary currency_modify">Modifier</button>
 			<button id="${currency.getIdCurrency() }"
 				class="btn btn-danger currency_delete">Supprimer</button>
+			</div>
 		</c:otherwise>
 	</c:choose>
 
