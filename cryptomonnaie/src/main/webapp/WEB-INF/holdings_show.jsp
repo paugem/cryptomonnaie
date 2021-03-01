@@ -6,19 +6,21 @@
 			<h3>Aucun avoir n'a cet ID.</h3>
 		</c:when>
 		<c:otherwise>
-			<ul>
-				<li><c:out value="${holding.getIdHolding() }"></c:out></li>
-				<li><c:out value="${holding.getNameCurrency() }"></c:out></li>
-				<li><c:out value="${holding.getQuantity() }"></c:out></li>
-				<li><c:out value="${holding.getPurchasePrice() }"></c:out></li>
-				<li><c:out value="${holding.getPurchaseDate() }"></c:out></li>
-				<li><c:out value="${holding.getCurrentPrice() }"></c:out></li>
-				<li><c:out value="${holding.getDelta() }"></c:out></li>
+			<ul class="border border-secondary rounded" style="background-color:lightgrey">
+				<li>ID : <c:out value="${holding.getIdHolding() }"></c:out></li>
+				<li>Nom : <c:out value="${holding.getNameCurrency() }"></c:out></li>
+				<li>Quantité : <c:out value="${holding.getQuantity() }"></c:out></li>
+				<li>Prix d'Achat : <c:out value="${holding.getPurchasePrice() }"></c:out></li>
+				<li>Date d'Achat : <c:out value="${holding.getPurchaseDate() }"></c:out></li>
+				<li>Prix Actuel : <c:out value="${holding.getCurrentPrice() }"></c:out></li>
+				<li>Delta : <c:out value="${holding.getDelta() }"></c:out></li>
 			</ul>
+			<div>
 			<button id="${holding.getIdHolding() }"
 				class="btn btn-primary holding_modify">Modifier</button>
 			<button id="${holding.getIdHolding() }"
 				class="btn btn-danger holding_delete">Supprimer</button>
+			</div>
 		</c:otherwise>
 	</c:choose>
 

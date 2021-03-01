@@ -5,7 +5,6 @@ window.onload = function() {
 	const delta = document.querySelectorAll('.delta');
 
 	delta.forEach(del => {
-		console.log(del.innerHTML);
 		if (parseFloat(del.innerHTML) > 0) {
 			del.style.color = "green";
 		} else if (parseFloat(del.innerHTML) < 0) {
@@ -13,8 +12,6 @@ window.onload = function() {
 		}
 	})
 }
-
-
 
 holdingShow.forEach(p => {
 	p.addEventListener("click", redirectHoldingShow);

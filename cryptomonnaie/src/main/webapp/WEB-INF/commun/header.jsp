@@ -29,14 +29,14 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav">
+		<ol class="navbar-nav">
 			<li class="nav-item" id="avoirs"><a class="nav-link"
 				href="holdings_index.html">Avoirs<span class="sr-only">(current)</span></a>
 			</li>
 			<li class="nav-item" id="cryptomonnaies"><a class="nav-link"
 				href="currency_index.html">Cryptomonnaies<span class="sr-only">(current)</span></a>
 			</li>
-		</ul>
+		</ol>
 	</div>	
 </nav>
 <body>
