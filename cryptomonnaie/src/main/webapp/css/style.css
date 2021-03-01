@@ -27,7 +27,7 @@ li {
 	max-width: 48rem;
 	margin: auto;
 	padding: 1.5rem;
-	background-color: burlywood;
+	background-color: lightgrey;
 	border: 1px solid black;
 }
 
@@ -39,6 +39,7 @@ li {
 
 .popup {
 	position: fixed;
+	margin-top : 240px;
 	z-index: 100;
 	display: flex;
 	top: 0;

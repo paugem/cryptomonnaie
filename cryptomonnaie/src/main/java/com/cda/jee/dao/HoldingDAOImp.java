@@ -66,7 +66,6 @@ public class HoldingDAOImp implements IDAO<Holding>{
 		}
 		else {
 			logger.error("Impossible d'ajouter l'avoir, il existe déjà en BDD");
-			System.out.println("Impossible d'ajouter l'avoir, il existe déjà en BDD");
 			return null;
 		}
 	}
