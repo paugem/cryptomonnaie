@@ -42,4 +42,14 @@ public class MyConnection implements AutoCloseable {
 			}
 		}
 	}
+	
+	public static void stop() {
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

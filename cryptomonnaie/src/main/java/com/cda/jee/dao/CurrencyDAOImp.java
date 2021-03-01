@@ -78,7 +78,7 @@ public class CurrencyDAOImp implements IDAO<Currency>{
 	@Override
 	public Currency updateById(Currency t) {
 		Connection c = MyConnection.getConnection();
-		Currency cur = getByName(t.getNameCurrency());
+		Currency cur = getById(t.getIdCurrency());
 		if(cur!=null) {
 			try (PreparedStatement ps = c.prepareStatement("update currency set current_price=? where id_currency=?")) {
 				ps.setFloat(1, t.getCurrentPrice());

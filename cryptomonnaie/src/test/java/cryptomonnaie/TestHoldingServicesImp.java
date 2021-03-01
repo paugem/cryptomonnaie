@@ -2,17 +2,21 @@ package cryptomonnaie;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileReader;
+import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.h2.tools.RunScript;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.cda.jee.connection.MyConnection;
 import com.cda.jee.model.Holding;
 import com.cda.jee.services.HoldingsServicesImp;
 
@@ -20,11 +24,15 @@ class TestHoldingServicesImp {
 	HoldingsServicesImp holdServiceImp = new HoldingsServicesImp();
 
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	static void init() throws Exception {
+		Connection conn = MyConnection.getConnection();
+		RunScript.execute(conn, new FileReader(TestHoldingServicesImp.class.getResource("/ddl_script.sql").getFile()));
+		RunScript.execute(conn, new FileReader(TestHoldingServicesImp.class.getResource("/data_script.sql").getFile()));
 	}
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
+		MyConnection.stop();
 	}
 
 	@BeforeEach
