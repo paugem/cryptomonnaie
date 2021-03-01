@@ -9,7 +9,7 @@
 			<form action="currency_update.html?id=${currency.getIdCurrency() }" method="POST">
 				<label>Nom : </label> <input value="${currency.getNameCurrency() }" type="text" name="name" readonly> <br>
 				<label>Label : </label> <input value="${currency.getLabel() }" type="text" name="label" readonly> <br>
-				<label>Prix Actuel : </label> <input value="${currency.getCurrentPrice() }" type="number" name="currentPrice" required> <br>
+				<label>Prix Actuel : </label> <input value="${currency.getCurrentPrice() }" type="number" name="currentPrice"> <br>
 				<input type="submit" value="Valider">
 			</form>
 		</c:otherwise>

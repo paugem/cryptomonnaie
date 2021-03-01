@@ -2,7 +2,9 @@ h1 {
 	color: red;
 }
 
-
+td, button, a {
+	cursor: pointer;
+}
 
 .popup-box {
     flex: 1;
