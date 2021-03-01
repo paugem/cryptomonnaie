@@ -37,7 +37,7 @@ public class HoldingDAOImp implements IDAO<Holding>{
 		Connection c = MyConnection.getConnection();
 		Holding holding = getByName(t.getNameCurrency());
 		if(holding==null) {
-			try(PreparedStatement statement = c.prepareStatement("select id_currency from currency where currency_name = ?;")){
+			try(PreparedStatement statement = c.prepareStatement("select id_currency from currency where name_currency = ?;")){
 				statement.setString(1, t.getNameCurrency());
 				ResultSet r = statement.executeQuery();
 				try (PreparedStatement ps = c.prepareStatement("insert into holding (purchase_date,unit_purchase_price,quantity,id_currency) values (?,?,?,?); ",
@@ -91,7 +91,7 @@ public class HoldingDAOImp implements IDAO<Holding>{
 		Connection c = MyConnection.getConnection();
 		Holding holding = getByName(t.getNameCurrency());
 		if(holding!=null) {
-			try(PreparedStatement statement = c.prepareStatement("select id_currency from currency where currency_name = ?;")){
+			try(PreparedStatement statement = c.prepareStatement("select id_currency from currency where name_currency = ?;")){
 				statement.setString(1, t.getNameCurrency());
 				ResultSet r = statement.executeQuery();
 				try (PreparedStatement ps = c.prepareStatement("update holding set purchase_date=?, unit_purchase_price=?,quantity=?,id_currency=? where id_holding=?")) {
