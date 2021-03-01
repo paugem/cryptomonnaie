@@ -7,10 +7,19 @@
 		</c:when>
 		<c:otherwise>
 			<form action="currency_update.html?id=${currency.getIdCurrency() }" method="POST">
-				<label>Nom : </label> <input value="${currency.getNameCurrency() }" type="text" name="name" readonly> <br>
-				<label>Label : </label> <input value="${currency.getLabel() }" type="text" name="label" readonly> <br>
-				<label>Prix Actuel : </label> <input value="${currency.getCurrentPrice() }" type="number" name="currentPrice"> <br>
-				<input class="btn btn-success" type="submit" value="Valider">
+			<div class="container">
+				<h4><label>Nom : </label></h4> <h4><input value="${currency.getNameCurrency() }" type="text" name="name" readonly></h4> <br>
+			</div>
+			<div class="container">
+				<h4><label>Label : </label></h4> <h4><input value="${currency.getLabel() }" type="text" name="label" readonly> <br></h4>
+			</div>
+			<div class="container">
+				<h4><label>Prix Actuel :</label></h4> <h4><input value="${currency.getCurrentPrice() }" type="number" name="currentPrice"></h4> <br>
+			</div>
+			<br>
+			<div class="container">
+				<input class="btn btn-lg btn-success" type="submit" value="Valider">
+			</div>
 			</form>
 		</c:otherwise>
 	</c:choose>

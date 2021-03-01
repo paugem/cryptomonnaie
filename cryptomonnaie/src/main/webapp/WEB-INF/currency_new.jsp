@@ -2,10 +2,19 @@
 	<h1>Créer une cryptomonnaie</h1>
 
 	<form action="currency_new.html" method="POST">
-		<label>Nom : </label> <input type="text" name="name"> <br>
-		<label>Label : </label> <input type="text" name="label"> <br>
-		<label>Prix Actuel : </label> <input type="number" name="currentPrice"> <br> 
-		<input class="btn btn-success" type="submit" value="Valider">
+		<div class="container">
+		<h4><label>Nom : </label> <input type="text" name="name"></h4> <br>
+		</div>
+		<div class="container">
+		<h4><label>Label : </label> <input type="text" name="label"></h4> <br>
+		</div>
+		<div class="container">
+		<h4><label>Prix Actuel : </label> <input type="number" name="currentPrice"></h4> <br>
+		</div> 
+		<br>
+		<div class="container">
+		<input class="btn btn-lg btn-success" type="submit" value="Valider">
+		</div> 
 	</form>
 
 	<c:choose>
