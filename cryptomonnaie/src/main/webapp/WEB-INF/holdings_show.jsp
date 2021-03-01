@@ -7,19 +7,19 @@
 		</c:when>
 		<c:otherwise>
 			<ul class="border border-secondary rounded" style="background-color:lightgrey">
-				<li>ID : <c:out value="${holding.getIdHolding() }"></c:out></li>
-				<li>Nom : <c:out value="${holding.getNameCurrency() }"></c:out></li>
-				<li>Quantité : <c:out value="${holding.getQuantity() }"></c:out></li>
-				<li>Prix d'Achat : <c:out value="${holding.getPurchasePrice() }"></c:out></li>
-				<li>Date d'Achat : <c:out value="${holding.getPurchaseDate() }"></c:out></li>
-				<li>Prix Actuel : <c:out value="${holding.getCurrentPrice() }"></c:out></li>
-				<li>Delta : <c:out value="${holding.getDelta() }"></c:out></li>
+				<li><h4>ID : <c:out value="${holding.getIdHolding() }"></c:out></h4></li>
+				<li><h4>Nom : <c:out value="${holding.getNameCurrency() }"></c:out></h4></li>
+				<li><h4>Quantité : <c:out value="${holding.getQuantity() }"></c:out></h4></li>
+				<li><h4>Prix d'Achat : <c:out value="${holding.getPurchasePrice() }"></c:out></h4></li>
+				<li><h4>Date d'Achat : <c:out value="${holding.getPurchaseDate() }"></c:out></h4></li>
+				<li><h4>Prix Actuel : <c:out value="${holding.getCurrentPrice() }"></c:out></h4></li>
+				<li><h4>Delta : <c:out value="${holding.getDelta() }"></c:out></h4></li>
 			</ul>
 			<div>
 			<button id="${holding.getIdHolding() }"
-				class="btn btn-primary holding_modify">Modifier</button>
+				class="btn btn-lg btn-primary holding_modify">Modifier</button>
 			<button id="${holding.getIdHolding() }"
-				class="btn btn-danger holding_delete">Supprimer</button>
+				class="btn btn-lg btn-danger holding_delete">Supprimer</button>
 			</div>
 		</c:otherwise>
 	</c:choose>

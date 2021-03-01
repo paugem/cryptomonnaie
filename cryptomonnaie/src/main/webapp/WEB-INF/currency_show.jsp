@@ -7,16 +7,16 @@
 		</c:when>
 		<c:otherwise>
 			<ul class="border border-secondary rounded">
-				<li>ID : <c:out value="${currency.getIdCurrency() }"></c:out></li>
-				<li>Nom : <c:out value="${currency.getNameCurrency() }"></c:out></li>
-				<li>Label : <c:out value="${currency.getLabel() }"></c:out></li>
-				<li>Prix Actuel : <c:out value="${currency.getCurrentPrice() }"></c:out></li>
+				<li><h4>ID : <c:out value="${currency.getIdCurrency() }"></c:out></h4></li>
+				<li><h4>Nom : <c:out value="${currency.getNameCurrency() }"></c:out></h4></li>
+				<li><h4>Label : <c:out value="${currency.getLabel() }"></c:out></h4></li>
+				<li><h4>Prix Actuel : <c:out value="${currency.getCurrentPrice() }"></c:out></h4></li>
 			</ul>
 			<div>
 			<button id="${currency.getIdCurrency() }"
-				class="btn btn-primary currency_modify">Modifier</button>
+				class="btn btn-lg btn-primary currency_modify">Modifier</button>
 			<button id="${currency.getIdCurrency() }"
-				class="btn btn-danger currency_delete">Supprimer</button>
+				class="btn btn-lg btn-danger currency_delete">Supprimer</button>
 			</div>
 		</c:otherwise>
 	</c:choose>
