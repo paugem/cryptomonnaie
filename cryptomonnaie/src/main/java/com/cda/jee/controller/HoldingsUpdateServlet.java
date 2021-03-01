@@ -40,7 +40,6 @@ public class HoldingsUpdateServlet extends HttpServlet {
 		String purchasePriceStr = req.getParameter("purchasePrice");
 		String purchaseDateStr = req.getParameter("purchaseDate");
 		
-
 		// Check if every parameters has been completed
 		if (nameCurrency == null || nameCurrency.isEmpty() || quantityStr == null || quantityStr.isEmpty()
 				|| purchasePriceStr == null || purchasePriceStr.isEmpty()) {
@@ -78,7 +77,7 @@ public class HoldingsUpdateServlet extends HttpServlet {
 			return;
 		}
 		
-		Holding holding = new Holding(nameCurrency, quantity, purchasePrice, purchaseDate);
+		Holding holding = new Holding(id, nameCurrency, quantity, purchasePrice, purchaseDate);
 		holdingsServices.update(holding);
 
 		resp.sendRedirect("./holdings_index.html");

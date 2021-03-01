@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cda.jee.model.Currency;
 import com.cda.jee.model.Holding;
+import com.cda.jee.services.CurrencyServicesImp;
 import com.cda.jee.services.HoldingsServicesImp;
 
 @WebServlet("/holdings_new.html")
@@ -18,10 +20,14 @@ public class HoldingsNewServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	CurrencyServicesImp currencyServices = new CurrencyServicesImp();
 	HoldingsServicesImp holdingsServices = new HoldingsServicesImp();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		ArrayList<Currency> currencies = currencyServices.index();
+
+		req.setAttribute("currencies", currencies);
 
 		req.getRequestDispatcher("/WEB-INF/holdings_new.jsp").forward(req, resp);
 	}
@@ -73,6 +79,18 @@ public class HoldingsNewServlet extends HttpServlet {
 			return;
 		}
 
+		// Check if the name is a currency
+		ArrayList<Currency> currencies = currencyServices.index();
+		ArrayList<String> currenciesName = new ArrayList<String>();
+		for (Currency currency : currencies) {
+			currenciesName.add(currency.getNameCurrency());
+		}
+		if (!currenciesName.contains(nameCurrency)) {
+			req.setAttribute("error_message", "Cette cryptomonnaie n'existe pas.");
+			req.getRequestDispatcher("/WEB-INF/holdings_new.jsp").forward(req, resp);
+			return;
+		}
+		
 		// Check if the name is already taken
 		ArrayList<Holding> holdings = holdingsServices.index();
 		ArrayList<String> holdingsCurrencyName = new ArrayList<String>();
@@ -84,6 +102,8 @@ public class HoldingsNewServlet extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/holdings_new.jsp").forward(req, resp);
 			return;
 		}
+		
+		
 
 		Holding holding = new Holding(nameCurrency, quantity, purchasePrice, purchaseDate);
 		holdingsServices.create(holding);
