@@ -22,6 +22,19 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
-<nav class="navbar navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="holdings_index.html">Avoirs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="currency_index.html">Cryptomonnaies</a>
+      </li>
+	</ul>
+</div>
 </nav>
 <body>
