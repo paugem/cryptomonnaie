@@ -37,6 +37,13 @@
 				href="currency_index.html">Cryptomonnaies<span class="sr-only">(current)</span></a>
 			</li>
 		</ol>
-	</div>	
+	</div>
+	<c:choose>
+		<c:when test="${not empty totalDelta }">
+			<div class="nav-item text-white">
+				<c:out value="Somme Delta = ${totalDelta }"></c:out>
+			</div>
+		</c:when>
+	</c:choose>
 </nav>
 <body>
