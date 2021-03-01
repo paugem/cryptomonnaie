@@ -33,6 +33,7 @@ public class HoldingsNewServlet extends HttpServlet {
 		String quantityStr = req.getParameter("quantity");
 		String purchasePriceStr = req.getParameter("purchasePrice");
 		String purchaseDateStr = req.getParameter("purchaseDate");
+		System.out.println(purchaseDateStr);
 
 		// Check if every parameters has been completed
 		if (nameCurrency == null || nameCurrency.isEmpty() || quantityStr == null || quantityStr.isEmpty()
