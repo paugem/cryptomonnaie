@@ -1,7 +1,6 @@
 package com.cda.jee.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cda.jee.model.Currency;
 import com.cda.jee.model.Holding;
 import com.cda.jee.services.HoldingsServicesImp;
 
