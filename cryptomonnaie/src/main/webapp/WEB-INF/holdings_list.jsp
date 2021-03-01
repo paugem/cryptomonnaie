@@ -26,7 +26,7 @@
 							<td class="holding_unit"><c:out value="${holding.getPurchasePrice() }"></c:out></td>
 							<td class="holding_unit"><c:out value="${holding.getPurchaseDate() }"></c:out></td>
 							<td class="holding_unit"><c:out value="${holding.getCurrentPrice() }"></c:out></td>
-							<td class="holding_unit"><c:out value="${holding.getDelta() }"></c:out></td>
+							<td class="holding_unit delta"><c:out value="${holding.getDelta() }"></c:out></td>
 						</tr>
 					</c:forEach>
 				</tbody>
