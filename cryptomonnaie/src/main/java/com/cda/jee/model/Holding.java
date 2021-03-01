@@ -37,5 +37,14 @@ public class Holding {
 		this.purchaseDate = purchaseDate;
 
 	}
+	
+	public Holding(int idHolding, String nameCurrency, int quantity, Float purchasePrice, Date purchaseDate) {
+		this.idHolding = idHolding;
+		this.nameCurrency = nameCurrency;
+		this.quantity = quantity;
+		this.purchasePrice = purchasePrice;
+		this.purchaseDate = purchaseDate;
+		
+	}
 
 }

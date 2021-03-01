@@ -38,8 +38,6 @@ public class CurrencyUpdateServlet extends HttpServlet {
 		String label = "";
 		String currentPriceStr = req.getParameter("currentPrice");
 
-		System.out.println(currentPriceStr);
-		System.out.println(id);
 		
 		// Check if the price has been completed
 		if (currentPriceStr == null || currentPriceStr.isEmpty()) {
