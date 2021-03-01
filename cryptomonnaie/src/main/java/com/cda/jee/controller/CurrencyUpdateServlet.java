@@ -38,11 +38,13 @@ public class CurrencyUpdateServlet extends HttpServlet {
 		String label = "";
 		String currentPriceStr = req.getParameter("currentPrice");
 
+		System.out.println(currentPriceStr);
+		System.out.println(id);
+		
 		// Check if the price has been completed
 		if (currentPriceStr == null || currentPriceStr.isEmpty()) {
 			req.setAttribute("error_message", "Le prix est obligatoire.");
 			doGet(req,resp);
-//			req.getRequestDispatcher("/WEB-INF/currency_update.jsp").forward(req, resp);
 			return;
 		}
 		
@@ -54,7 +56,6 @@ public class CurrencyUpdateServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			req.setAttribute("error_message", "Le prix est forcément un nombre.");
 			doGet(req,resp);
-//			req.getRequestDispatcher("/WEB-INF/currency_update.jsp").forward(req, resp);
 			return;
 		}
 		
@@ -62,7 +63,6 @@ public class CurrencyUpdateServlet extends HttpServlet {
 		if (currentPrice < 0) {
 			req.setAttribute("error_message", "Le prix ne peut pas être négatif.");
 			doGet(req,resp);
-//			req.getRequestDispatcher("/WEB-INF/currency_update.jsp").forward(req, resp);
 			return;
 		}
 

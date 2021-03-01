@@ -8,9 +8,9 @@
 		<c:otherwise>
 			<form action="holdings_update.html?id=${holding.getIdHolding() }" method="POST">
 				<label>Nom de la cryptomonnaie : </label> <input value="${holding.getNameCurrency() }" type="text" name="nameCurrency" readonly> <br>
-				<label>Quantité : </label> <input value="${holding.getQuantity() }" type="text" name="quantity"> <br>
-				<label>Prix d'Achat : </label> <input value="${holding.getPurchasePrice() }" type="text" name="purchasePrice"> <br>
-				<label>Date d'Achat : </label> <input value="${holding.getPurchaseDate() }" type="text" name="purchaseDate"> <br>
+				<label>Quantité : </label> <input value="${holding.getQuantity() }" type="number" name="quantity"> <br>
+				<label>Prix d'Achat : </label> <input value="${holding.getPurchasePrice() }" type="number" name="purchasePrice"> <br>
+				<label>Date d'Achat : </label> <input value="${holding.getPurchaseDate() }" type="date" name="purchaseDate"> <br>
 				<input type="submit" value="Valider">
 			</form>
 		</c:otherwise>
