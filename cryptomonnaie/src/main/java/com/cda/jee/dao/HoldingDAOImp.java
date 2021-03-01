@@ -24,7 +24,7 @@ public class HoldingDAOImp implements IDAO<Holding>{
 			ResultSet r = st.executeQuery("select * from holding natural join currency");
 			while (r.next()) {
 				res.add(new Holding(r.getInt("id_holding"),r.getString("name_currency"),r.getInt("quantity"),
-						r.getFloat("unit_purchase_price"),r.getDate("purchase_date"),r.getFloat("current_price"),r.getFloat("unit_purchase_price")-r.getFloat("current_price")));
+						r.getFloat("unit_purchase_price"),r.getDate("purchase_date"),r.getFloat("current_price"),r.getFloat("current_price")-r.getFloat("unit_purchase_price")));
 			}
 		} catch (SQLException e) {
 			logger.error("erreur : " + e);
@@ -45,7 +45,9 @@ public class HoldingDAOImp implements IDAO<Holding>{
 					ps.setDate(1, t.getPurchaseDate());
 					ps.setFloat(2, t.getPurchasePrice());
 					ps.setInt(3, t.getQuantity());
-					ps.setInt(4, r.getInt("id_currency"));
+					if(r.next()) {
+						ps.setInt(4, r.getInt("id_currency"));
+					}
 					ps.executeUpdate();
 					ResultSet resultat = ps.getGeneratedKeys();
 					if (resultat.next()) {
@@ -98,7 +100,9 @@ public class HoldingDAOImp implements IDAO<Holding>{
 					ps.setDate(1, t.getPurchaseDate());
 					ps.setFloat(2, t.getPurchasePrice());
 					ps.setInt(3, t.getQuantity());
-					ps.setInt(4, r.getInt("id_currency"));
+					if(r.next()) {
+						ps.setInt(4, r.getInt("id_currency"));
+					}
 					ps.setInt(5, t.getIdHolding());
 					ps.executeUpdate();
 					return t;
