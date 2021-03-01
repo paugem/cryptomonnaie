@@ -4,7 +4,7 @@
 	<form action="holdings_new.html" method="POST">
 		<label>Nom de la Cryptomonnaie : </label> 
 		<select name="nameCurrency">
-			<option value="">--Choisissez une crytpomonnaie--</option>
+			<option value="">--Choisissez une cryptomonnaie--</option>
 			<c:forEach items="${currencies}" var="currency">
 			<option id="${currency.getIdCurrency()}"><c:out value="${currency.getNameCurrency() }"></c:out></option>
 			</c:forEach>

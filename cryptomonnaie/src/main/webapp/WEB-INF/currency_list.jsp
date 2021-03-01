@@ -28,6 +28,13 @@
 		</c:otherwise>
 	</c:choose>
 <button class="btn btn-success currency_new">Ajouter une nouvelle cryptomonnaie</button>
+	<c:choose>
+		<c:when test="${not empty error_message}">
+			<h3>
+				<c:out value="${error_message }" />
+			</h3>
+		</c:when>
+	</c:choose>
 </div>
 
 
