@@ -1,4 +1,5 @@
 CREATE DATABASE IF NOT EXISTS cda_cryptomonnaie;
+CREATE USER IF NOT EXISTS 'cda1'@'%' IDENTIFIED BY 'cda1pwd';
 GRANT ALL PRIVILEGES ON cda_cryptomonnaie.* TO 'cda1'@'%';
 
 CREATE TABLE IF NOT EXISTS currency(
